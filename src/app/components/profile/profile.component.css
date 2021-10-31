@@ -1,0 +1,30 @@
+
+.profile-main-info .profile-pic img{
+  height: 200px;
+  width: auto;
+  border-radius: 5px;
+}
+.profile .profile-main-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} 
+
+.profile .profile-main-info .stats{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-main-info .stats .follow{
+  display: flex;
+  flex-direction: center;
+  gap: 4px;
+}
+
+.following i{
+  display: flex;
+  justify-content: center;
+  font-size: 0.5rem;
+}

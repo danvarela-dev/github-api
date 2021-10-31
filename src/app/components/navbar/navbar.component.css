@@ -38,10 +38,23 @@
   padding-bottom: 4px;
   border-bottom: 1px solid black;
   padding-left: 5px;
+  font-size: small;
 }
+li .result-inner{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.result-inner img{
+  border-radius: 50px;
+  margin-right: 5px;
+}
+
 .nav-search ul li:hover{
   background-color: black;
   color: white;
+  cursor: pointer;
 }
 
 .nav-search input {

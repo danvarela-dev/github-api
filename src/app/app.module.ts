@@ -12,6 +12,7 @@ import { AlertsService } from './services/alerts/alerts.service';
 import { AppErrorHandler } from './common/errors/app-error-handler';
 import { UserService } from './services/user/user.service';
 import { FormsModule } from '@angular/forms';
+import { ProfileService } from './services/profile/profile.service';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, ProfileComponent],
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     AlertsService,
     UserService,
     DataService,
+    ProfileService,
     AppErrorHandler
   ],
   bootstrap: [AppComponent],

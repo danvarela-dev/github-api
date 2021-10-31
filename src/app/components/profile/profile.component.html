@@ -1,7 +1,25 @@
-<div class="profile">
+<div class="profile container">
   <div class="profile-main-info">
     <div class="profile-pic">
-      <img src="" alt="">
+      <img [src]="userObj?.avatar_url" alt="" />
+    </div>
+    <div class="profile-name">
+      {{ userObj?.name }}
+    </div>
+
+    <div class="stats">
+      <div class="follow">
+        <i class="fas fa-users"></i>
+        <div class="following">
+          {{ userObj?.followers }} <span style="color: gray"> followers</span>
+        </div>
+        <span>•</span>
+        <div class="followers">
+          {{ userObj?.following }} <span style="color: gray"> following</span>
+        </div>
+      </div>
+      <span>•</span>
+      <div class="stars"><i class="far fa-star"></i></div>
     </div>
   </div>
 </div>

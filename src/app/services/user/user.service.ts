@@ -11,9 +11,8 @@ export class UserService extends DataService{
     super(http);
   }
 
-  getUser(username:string){
+  queryUser(username:string){
     return this.getAll("https://api.github.com/search/users?q="+username);
   }
-
 
 }

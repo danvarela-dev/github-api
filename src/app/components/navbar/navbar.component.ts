@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchResponse } from 'src/app/common/interfaces/search-response.interface';
+import { ProfileService } from 'src/app/services/profile/profile.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -8,20 +9,30 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private profileService : ProfileService) {}
 
   topResults: any[] = [];
-
+  userQuery:any;
+  
   ngOnInit(): void {}
-
-  search(username: string) {
-    if (username != '')
+  
+  search(username:string) {
+    if (username != '') {
       this.userService
-        .getUser(username)
+        .queryUser(username)
         .subscribe(
           (data) => (this.topResults = (data as SearchResponse).items)
         );
-
-    console.log(this.topResults);
+    }else{
+      this.topResults = [];
+    }
   }
+
+  chooseUser(e:any){
+    let username = e.target.innerText;
+    let index = this.topResults.findIndex(res=> res.login == username );
+    this.userQuery = this.topResults[index]; 
+    this.topResults = [];
+  }
+  
 }
