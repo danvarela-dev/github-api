@@ -1,0 +1,16 @@
+<nav class="nav">
+  <div class="nav-brand"><i class="fab fa-github"></i> Github</div>
+
+  <div class="nav-search">
+    <input ngModel name="username" #username="ngModel" type="text" placeholder="Search by username" (keyup)="search(username.value)"/>
+    <ul *ngIf="topResults.length != 0">
+      <li *ngFor="let result of topResults">
+      <div class="result-inner">
+        <img [src]="result.avatar_url" height="25px" width="auto" [alt]="result.avatar">
+        {{result.login}}
+      </div>
+      </li>
+    </ul>
+    <!-- <i class="fas fa-search"></i> -->
+  </div>
+</nav>
