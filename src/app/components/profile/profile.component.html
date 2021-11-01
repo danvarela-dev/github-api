@@ -4,7 +4,10 @@
       <img [src]="userObj?.avatar_url" alt="" />
     </div>
     <div class="profile-name">
-      {{ userObj?.name }}
+      <a [href]="userObj?.html_url"> {{ userObj?.name }}</a>
+    </div>
+    <div class="profile-username" style="color: gray">
+      <a [href]="userObj?.html_url"> {{ userObj?.login }}</a>
     </div>
 
     <div class="stats">
@@ -19,7 +22,100 @@
         </div>
       </div>
       <span>•</span>
-      <div class="stars"><i class="far fa-star"></i></div>
+      <div class="stars">
+        <i class="far fa-star" style="color: gray"></i>
+        <span>{{ starsNumber }}</span>
+      </div>
+    </div>
+
+    <div class="specs">
+      <div class="company" *ngIf="userObj?.location != null">
+        <i class="far fa-building" style="margin-right: 4px;"></i>
+        <span>{{ userObj?.company }}</span>
+      </div>
+      <div class="website" *ngIf="userObj?.blog != '' || userObj?.blog != null">
+        <i class="fas fa-link" style="margin-right: 4px;"></i>
+        <span>{{ userObj?.blog }}</span>
+      </div>
+      <div class="member-since" *ngIf="userObj?.created_at != null">
+        <i class="far fa-clock" style="margin-right: 4px;"></i>
+        <span>{{ userObj?.created_at | date: "longDate" }}</span>
+      </div>
+      <div class="location">
+        <i class="fas fa-map-marker-alt" style="margin-right: 4px;"> </i>
+        <span>{{ userObj?.location }}</span>
+      </div>  
+    </div>
+
+    <div class="follow-container">
+      <div class="follow-header">Followers</div>
+
+      <div class="follow-body">
+        <ul class="container">
+          <li *ngFor="let follower of followersProfiles">
+            <div class="li-follower">
+              <div class="avatar">
+                <img
+                  [src]="follower.avatar_url"
+                  alt="follower.avatar_url"
+                  width="25px"
+                  height="auto"
+                />
+              </div>
+              <div
+                class="li-follower-inner"
+                *ngIf="follower.name != null; then showName; else displayLogin"
+              ></div>
+
+              <div class="follower-inner-header">
+                <ng-template #showName id="name">
+                  <a [href]="follower.html_url"> {{ follower.name }} </a>
+                </ng-template>
+                <ng-template #displayLogin id="name">
+                  <a [href]="follower.html_url"> {{ follower.login }} </a>
+                </ng-template>
+              </div>
+            </div>
+            <hr />
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="repositories">
+    <div class="repos">
+      <div class="repos-header">
+        <span id="repoid"><i class="far fa-folder"></i> Repositories</span>
+        <span id="repocount">{{ reposCount }}</span>
+      </div>
+
+      <div class="repos-body">
+        <ul>
+          <li *ngFor="let repo of reposList">
+            <div class="li-inner">
+              <div class="li-header">
+                <a [href]="repo.html_url">{{ repo.name }}</a>
+              </div>
+              <div class="li-body">
+                <div class="stars">
+                  <i class="far fa-star"></i>
+                  <span>{{ repo.stargazers_count }}</span>
+                </div>
+                <div class="forks">
+                  <i class="fas fa-code-branch"></i>
+                  <span>{{ repo.forks_count }}</span>
+                </div>
+                <div class="watch">
+                  <i class="far fa-eye"></i>
+                  <span>{{ repo.watchers_count }}</span>
+                </div>
+              </div>
+            </div>
+            <hr />
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

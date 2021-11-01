@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { DataService } from '../data/data.service';
 
 @Injectable()
@@ -12,10 +12,14 @@ export class ProfileService extends DataService {
     return this.getAll(url);
   }
 
-  getFollowStats(followersUrl: string, followingUrl: string) {
-    return {
-      followers: this.getAll(followersUrl),
-      following: this.getAll(followingUrl),
-    };
+  getFollowers(followersUrl: string) {
+    return  this.getAll(followersUrl);
   }
+
+  getStarsCount(url:string){
+    return this.getCount(url);
+  }
+
+
+
 }
